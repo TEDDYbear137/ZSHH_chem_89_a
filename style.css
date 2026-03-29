@@ -1,0 +1,328 @@
+/* ============================================
+   ###### CSS VARIABLES - Zde měňte barvy a vzhled
+   ============================================ */
+:root {
+    /* ###### PRIMARY COLOR - Hlavní barva týmu (zkuste změnit na #e74c3c nebo #2ecc71) */
+    --primary-color: #3498db;
+    
+    /* ###### BACKGROUND COLOR - Barva pozadí stránky */
+    --bg-color: #f4f7f6;
+    
+    /* ###### CARD BACKGROUND - Barva pozadí karty */
+    --card-bg: #ffffff;
+    
+    /* ###### TEXT COLOR - Barva textu */
+    --text-color: #2c3e50;
+    
+    /* ###### BORDER RADIUS - Zaoblení rohů (0 = ostré, 20px = hodně kulaté) */
+    --border-radius: 12px;
+    
+    /* ###### CARD WIDTH - Minimální šířka karty (menší číslo = více karet vedle sebe) */
+    --card-min-width: 280px;
+    
+    /* ###### GAP - Mezera mezi kartami */
+    --grid-gap: 20px;
+    
+    /* ###### FONT - Písmo (ponechte, nebo zkuste 'Georgia' nebo 'Arial') */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ============================================
+   ###### BASE STYLES - Základní nastavení
+   ============================================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    
+    /* ###### TEXT ALIGN - Zarovnání textu (left, center, right) */
+    text-align: left;
+}
+
+/* ============================================
+   ###### HEADER - Hlavička stránky
+   ============================================ */
+.site-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    
+    /* ###### SHADOW - Stín pod hlavičkou (zkuste zakomentovat) */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.site-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   ###### GALLERY GRID - Mřížka karet (2D Matrix)
+   ============================================ */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.gallery-grid {
+    display: grid;
+    /* 
+       ###### GRID LAYOUT - Automatické rozložení
+       auto-fill vyplní řádek co nejvíce kartami
+       minmax zajišťuje, že karta má minimální šířku, ale může být větší
+    */
+    grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
+    gap: var(--grid-gap);
+    
+    /* ###### PADDING - Vnitřní odsazení galerie */
+    padding: 1rem 0;
+}
+
+/* ============================================
+   ###### SAMPLE CARD - Vzhled jedné karty
+   ============================================ */
+.sample-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    
+    /* ###### CARD SHADOW - Stín karty (větší číslo = větší stín) */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    
+    /* ###### BORDER - Ohraničení karty (zkuste: 2px solid var(--primary-color)) */
+    border: none;
+    
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ###### HOVER EFFECT - Co se stane, když najedete myší (zkuste změnit scale na 1.05) */
+.sample-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+/* ============================================
+   ###### IMAGE SECTION - Obrázek nebo placeholder
+   ============================================ */
+.card-image-container {
+    width: 100%;
+    height: 200px;
+    background-color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ###### OBJECT-FIT - Jak se ořízne obrázek (cover, contain, fill) */
+    display: block;
+}
+
+/* ###### PLACEHOLDER - Když není fotka */
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* ============================================
+   ###### CARD CONTENT - Textová část karty
+   ============================================ */
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ###### TEAM BADGE - Štítek týmu */
+.team-badge {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    
+    /* ###### ALIGN - Zarovnání štítku (left, center, right) */
+    align-self: flex-start;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.card-location {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.card-description {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+/* ###### RESULT BOX - Box s výsledky měření */
+.result-box {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-left: 4px solid var(--primary-color);
+    padding: 0.75rem;
+    margin-top: auto; /* ###### PUSH TO BOTTOM - Tlačí box dolů karty */
+    border-radius: 0 4px 4px 0;
+}
+
+.result-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.result-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* ============================================
+   ###### STATUS MESSAGES - Načítání a chyby
+   ============================================ */
+.status-message {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.status-message.error {
+    color: #e74c3c;
+    background-color: #fadbd8;
+    border-radius: var(--border-radius);
+}
+
+/* ============================================
+   ###### FOOTER - Patička
+   ============================================ */
+.site-footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    color: #666;
+    font-size: 0.9rem;
+    border-top: 1px solid #ddd;
+}
+
+/* ============================================
+   ###### RESPONSIVE DESIGN - Mobilní telefony
+   ============================================ */
+@media (max-width: 768px) {
+    /* ###### MOBILE CARD WIDTH - Na mobilu větší karty pro lepší čtení */
+    :root {
+        --card-min-width: 300px;
+    }
+    
+    .site-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    /* ###### MOBILE GAP - Menší mezery na mobilu */
+    .gallery-grid {
+        gap: 15px;
+    }
+}
+
+/* ============================================
+   ###### OPTIONAL EXTENSIONS - Rozšiřující funkce (odkomentujte pro aktivaci)
+   ============================================ */
+
+/* 
+   ###### DARK MODE - Tmavý režim (zkuste odkomentovat celý blok)
+   
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --card-bg: #2c3e50;
+        --text-color: #ecf0f1;
+    }
+    .card-description { color: #bdc3c7; }
+    .card-location { color: #95a5a6; }
+}
+*/
+
+/*
+   ###### ANIMATION - Animace při načtení (karty se postupně objevují)
+   
+.sample-card {
+    animation: fadeIn 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+.sample-card:nth-child(1) { animation-delay: 0.1s; }
+.sample-card:nth-child(2) { animation-delay: 0.2s; }
+.sample-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+*/
+
+/*
+   ###### TEAM COLORS - Automatické barvy podle týmu (pokud chcete rozlišit týmy barvami)
+   
+.team-team_a { --primary-color: #e74c3c; }
+.team-team_b { --primary-color: #3498db; }
+.team-team_c { --primary-color: #2ecc71; }
+.team-team_d { --primary-color: #f39c12; }
+*/
+
+/*
+   ###### HORIZONTAL SCROLL - Horizontální scrolling místo gridu (pro "swipe" efekt)
+   
+.gallery-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 20px;
+}
+
+.sample-card {
+    flex: 0 0 300px;  # Pevná šířka karty
+    scroll-snap-align: start;
+}
+*/
