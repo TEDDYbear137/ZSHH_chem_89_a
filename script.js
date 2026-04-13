@@ -7,12 +7,14 @@ const CONFIG = {
     // Názvy sloupců v CSV souboru (musí přesně odpovídat hlavičce!)
     fields: {
         id: 'id',
-        team: 'subjekt',
-        name: 'Rozpouštědlo	',
-        description: 'Barva kytky',
-        location: 'Lokalita',
-        photo: 'Doba extrakce',
-        commentary: 'Barva papírku'
+        rostliny: 'subjekt',
+        kyselyna: 'Rozpouštědlo	',
+        barva: 'Barva kytky',
+        lokace: 'Lokalita',
+        cas: 'Doba extrakce',
+        papirky: 'Barva papírku'
+        kyselost: 'pH'
+        barva2: 'Barva extraktu'
     },
     
     // ###### DATA SOURCE - Cesta k datům (pokud přejmenujete soubor, změňte zde)
